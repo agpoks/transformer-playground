@@ -20,4 +20,9 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
 
 ## Clusters
 
-_(filled in as each model is added)_
+- `translation` -- Transformer, solo, real English-French pairs.
+- `mlm` -- BERT-style, solo, real WikiText-2.
+
+_(remaining clusters filled in as GPT-style, PatchTST-style, Conformer,
+Performer/Linformer, Perceiver, Decision Transformer, and the
+Tire-Patch-Wear Transformer are added.)_

@@ -58,8 +58,8 @@ has a matching `example.ipynb`.
 
 ## Status
 
-- [ ] Transformer (Vaswani et al. 2017)
-- [ ] BERT-style encoder
+- [x] Transformer (Vaswani et al. 2017)
+- [x] BERT-style encoder
 - [ ] GPT-style decoder (+ RoPE)
 - [ ] PatchTST-style time-series transformer
 - [ ] Conformer

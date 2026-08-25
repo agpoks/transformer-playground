@@ -1,0 +1,4 @@
+# BERT-style bidirectional encoder, masked-language-modeling, on real WikiText-2.
+models:
+  - bert
+epochs: 15

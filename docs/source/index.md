@@ -16,6 +16,8 @@ Every model ships with a runnable Python example and a Jupyter notebook.
 getting_started
 model_comparison
 benchmark_results
+models/transformer
+models/bert
 datasets
 benchmarks
 papers

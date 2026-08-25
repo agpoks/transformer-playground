@@ -1,0 +1,4 @@
+# The original encoder-decoder Transformer on real English->French pairs.
+models:
+  - transformer
+epochs: 15
