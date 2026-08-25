@@ -22,6 +22,7 @@ models/gpt
 models/linattn
 models/patchtst
 models/perceiver
+models/conformer
 datasets
 benchmarks
 papers

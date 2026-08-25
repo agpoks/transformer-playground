@@ -28,6 +28,7 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
 
 - `timeseries` -- PatchTST-style, solo, real ETTh1.
 - `vision` -- Perceiver, solo, real CIFAR-10.
+- `audio` -- Conformer, solo, real Google Speech Commands (core 10 words).
 
-_(remaining clusters filled in as Conformer, Decision Transformer, and the
+_(remaining clusters filled in as Decision Transformer and the
 Tire-Patch-Wear Transformer are added.)_

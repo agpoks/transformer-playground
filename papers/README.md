@@ -15,6 +15,7 @@ no single paper does exactly that). BibTeX for all references is in
 | [Linear attention](../models/linattn) | Rethinking Attention with Performers | ICLR 2021 | [arXiv:2009.14794](https://arxiv.org/abs/2009.14794) |
 | [PatchTST-style](../models/patchtst) | A Time Series is Worth 64 Words: Long-term Forecasting with Transformers | ICLR 2023 | [arXiv:2211.14730](https://arxiv.org/abs/2211.14730) |
 | [Perceiver](../models/perceiver) | Perceiver: General Perception with Iterative Attention | ICML 2021 | [arXiv:2103.03206](https://arxiv.org/abs/2103.03206) |
+| [Conformer](../models/conformer) | Conformer: Convolution-augmented Transformer for Speech Recognition | 2020 | [arXiv:2005.08100](https://arxiv.org/abs/2005.08100) |
 
 ## Why these nine, and not others
 
@@ -61,11 +62,20 @@ size/dataset variant of another model already here:
   Perceiver keeps every input element as its own token and instead bounds
   the *query* side of attention.
 
+- **Conformer** shows attention doesn't have to be pure: each block
+  sandwiches bidirectional self-attention (global context) between real
+  convolution (a depthwise conv with a GLU gate, giving local inductive
+  bias a fixed-size kernel captures naturally) and two half-weighted
+  feed-forwards (the "macaron" structure). This is the same CNN+attention
+  hybrid theme as CoAtNet, applied here to audio instead of vision -- a
+  genuinely different combination than any other model in this repo, none
+  of which mix a real learned convolution into the attention block itself.
+
 **ViT (Vision Transformer) is deliberately not duplicated here** -- it
 already lives in
 [`cnn-playground`](https://github.com/agpoks/cnn-playground/tree/main/models/vit)
 as the repo's non-convolutional contrast baseline; this repo links to it
 rather than rebuilding it.
 
-_(remaining sections filled in as Conformer, Decision Transformer, and the
+_(remaining sections filled in as Decision Transformer and the
 Tire-Patch-Wear Transformer are added.)_

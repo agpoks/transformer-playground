@@ -12,6 +12,7 @@ differs is the masking pattern, what plays the role of a token, and what
 | [Linear attention](models/linattn) | causal attention via FAVOR+ random features + cumulative sums, O(T) not O(T^2) | remove the random-feature kernel approximation and this is just GPT-style again -- the whole point is identical task/architecture, different attention complexity |
 | [PatchTST-style](models/patchtst) | bidirectional attention over 1D time-series patches, channel-independent shared weights | remove patching and it's one token per timestep (much longer, costlier sequences); remove channel-independence and channels could leak into each other's forecast |
 | [Perceiver](models/perceiver) | latents cross-attend into a large raw input array, then self-attend among themselves -- compute linear in input size | remove the latent bottleneck and this is full self-attention over every raw input element, O(input_len^2), infeasible at CIFAR-10-pixel scale |
+| [Conformer](models/conformer) | macaron block: half-FFN + bidirectional self-attn + real conv module (pointwise/GLU/depthwise/BN/Swish/pointwise) + half-FFN | remove the conv module and it's a plain (bidirectional) Transformer encoder over spectrogram frames -- no local inductive bias, just global attention |
 
-_(remaining rows filled in as Conformer, Decision Transformer, and the
+_(remaining rows filled in as Decision Transformer and the
 Tire-Patch-Wear Transformer are added.)_

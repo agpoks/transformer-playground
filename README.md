@@ -62,7 +62,7 @@ has a matching `example.ipynb`.
 - [x] BERT-style encoder
 - [x] GPT-style decoder (+ RoPE)
 - [x] PatchTST-style time-series transformer
-- [ ] Conformer
+- [x] Conformer
 - [x] Performer/Linformer (linear attention)
 - [x] Perceiver
 - [ ] Decision Transformer

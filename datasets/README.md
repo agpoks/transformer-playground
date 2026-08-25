@@ -43,5 +43,17 @@ Krizhevsky's real 32x32 RGB image classification dataset, via
 convolution) -- cross-repo comparable in spirit to `cnn-playground`'s
 `cifar_suite` models. `transformer_playground.data.load_cifar10`.
 
-_(remaining datasets filled in as Conformer, Decision Transformer, and the
+## Google Speech Commands (core 10 words)
+
+Warden's real spoken-word dataset (v0.02), 16kHz mono 1-second clips --
+this repo uses the standard "core 10" command words (yes, no, up, down,
+left, right, on, off, stop, go), reading `.wav` files directly via
+Python's `wave` module (this environment's `torchaudio.load()` needs
+system ffmpeg libraries not present here -- see
+`load_speech_commands`'s docstring). An honest, CPU-training-speed subset
+cap is applied per class (documented in the loader); the real, official
+`testing_list.txt` split is used for test regardless. Powers **Conformer**.
+`transformer_playground.data.load_speech_commands`.
+
+_(remaining datasets filled in as Decision Transformer and the
 Tire-Patch-Wear Transformer are added.)_

@@ -5,6 +5,7 @@ dataset in `datasets.py`, added incrementally as each model needs one.
 from transformer_playground.data.datasets import (
     load_cifar10,
     load_etth1,
+    load_speech_commands,
     load_tiny_shakespeare,
     load_translation_pairs,
     load_wikitext2,
@@ -16,4 +17,5 @@ __all__ = [
     "load_tiny_shakespeare",
     "load_etth1",
     "load_cifar10",
+    "load_speech_commands",
 ]

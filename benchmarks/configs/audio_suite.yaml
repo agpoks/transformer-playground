@@ -1,0 +1,4 @@
+# Conformer on real Google Speech Commands (core 10 spoken words).
+models:
+  - conformer
+epochs: 10
