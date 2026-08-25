@@ -1,0 +1,32 @@
+[project]
+name = "transformer-playground"
+version = "0.1.0"
+description = "A playground for Transformer architectures: attention hand-written from primitives across language, vision, audio, time-series, control, and mechanical/tire-wear domains, with runnable examples, benchmarks, and real datasets."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "agpoks", email = "agnespoks2@gmail.com" }]
+
+dependencies = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "torchaudio>=2.2",
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "pillow>=10.0",
+    "requests>=2.31",
+    "tqdm>=4.66",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyter>=1.0", "ipykernel>=6.29"]
+docs = ["sphinx>=7.2", "sphinx-rtd-theme>=2.0", "myst-parser>=2.0", "nbsphinx>=0.9", "sphinxcontrib-bibtex>=2.6"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["transformer_playground*"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

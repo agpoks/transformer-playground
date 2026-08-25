@@ -1,0 +1,23 @@
+# Benchmarks
+
+Like `cnn-playground`/`sciml-playground`, these nine models don't share one
+input/output shape or task (translation vs. masked LM vs. causal LM vs.
+time-series forecasting vs. audio vs. image classification vs. control vs.
+tire-wear regression), so benchmarking is grouped by **task cluster**, most
+of which hold a single model (kept in a consistent format rather than
+forced into an unfair comparison), except where two models share a task by
+design (GPT vs. its linear-attention variant, for a direct compute-cost
+comparison).
+
+Every `models/*/example.py` prints one final line in a common format:
+
+```
+RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<value>
+```
+
+`run_cluster.py` runs every model in a cluster back-to-back with the same
+`--device`/`--epochs`, parses that line, and prints a comparison table.
+
+## Clusters
+
+_(filled in as each model is added)_
