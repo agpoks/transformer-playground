@@ -24,6 +24,7 @@ models/patchtst
 models/perceiver
 models/conformer
 models/decisiontransformer
+models/tirewear
 datasets
 benchmarks
 papers

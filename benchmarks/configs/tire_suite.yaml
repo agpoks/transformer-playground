@@ -1,0 +1,6 @@
+# Tire-Patch-Wear Transformer on physics-simulated contact-patch wear data,
+# solo cluster -- no public dataset exists at this spatial resolution, so
+# there is no second model to compare against on identical real data.
+models:
+  - tirewear
+epochs: 30

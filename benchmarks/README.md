@@ -35,4 +35,6 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
   `datasets/README.md` and the model's docs page for the honest
   adaptation).
 
-_(remaining cluster filled in as the Tire-Patch-Wear Transformer is added.)_
+- `tire` -- Tire-Patch-Wear Transformer, solo, physics-simulated
+  contact-patch wear data (see `datasets/README.md` -- no public dataset
+  exists at this spatial resolution).

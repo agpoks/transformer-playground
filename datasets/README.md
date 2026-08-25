@@ -68,4 +68,18 @@ reinterprets each spatial bin's time series as one imitation trajectory
 to a free-flow-speed target); see that model's docs page for the full,
 explicit adaptation. `transformer_playground.data.load_ngsim_traffic_field`.
 
-_(remaining dataset filled in as the Tire-Patch-Wear Transformer is added.)_
+## Tire contact-patch wear (physics-simulated, not measured)
+
+No public dataset of spatially-resolved tire contact-patch wear exists
+(proprietary industry telemetry). `simulate_wear_trajectory` in
+`models/tirewear/model.py` generates it instead, from real (not arbitrary)
+physics: a parabolic brush-model pressure distribution, an
+adhesion/sliding split (Pacejka's brush-model mechanics), and
+Archard-consistent wear accumulation (wear rate proportional to pressure x
+sliding distance, non-negative by construction via `softplus`). The exact
+equations are an honest re-derivation of the real, already-tested
+`tire_nn/physics/brush_patch.py` and `tire_nn/physics/wear.py` modules in
+the sibling [`tire_physics_nn`](https://github.com/agpoks/tire_physics_nn)
+project (credited, not imported). Powers the **Tire-Patch-Wear
+Transformer**. See that model's docs page for a plot showing the simulated
+wear pattern is genuinely non-uniform, not noise.

@@ -66,4 +66,4 @@ has a matching `example.ipynb`.
 - [x] Performer/Linformer (linear attention)
 - [x] Perceiver
 - [x] Decision Transformer
-- [ ] Tire-Patch-Wear Transformer
+- [x] Tire-Patch-Wear Transformer

@@ -17,6 +17,7 @@ no single paper does exactly that). BibTeX for all references is in
 | [Perceiver](../models/perceiver) | Perceiver: General Perception with Iterative Attention | ICML 2021 | [arXiv:2103.03206](https://arxiv.org/abs/2103.03206) |
 | [Conformer](../models/conformer) | Conformer: Convolution-augmented Transformer for Speech Recognition | 2020 | [arXiv:2005.08100](https://arxiv.org/abs/2005.08100) |
 | [Decision Transformer](../models/decisiontransformer) | Decision Transformer: Reinforcement Learning via Sequence Modeling | NeurIPS 2021 | [arXiv:2106.01345](https://arxiv.org/abs/2106.01345) |
+| [Tire-Patch-Wear Transformer](../models/tirewear) | *(this repo's own combination, not one paper)* -- brush-model contact-patch mechanics + Archard's wear law | 2012 / 1953 | Pacejka, *Tire and Vehicle Dynamics* (no arXiv id); [Archard, DOI:10.1063/1.1721448](https://pubs.aip.org/aip/jap/article/24/8/981/160178) |
 
 ## Why these nine, and not others
 
@@ -88,10 +89,39 @@ size/dataset variant of another model already here:
   {doc}`the model's docs page <../models/decisiontransformer>` for the
   full, explicit adaptation.
 
+- **Tire-Patch-Wear Transformer** is this repo's own combination, stated
+  explicitly as such (no published paper does this) -- spatial
+  self-attention over tire contact-patch positions, trained on
+  physics-simulated data generated from real brush-model contact
+  mechanics (Pacejka 2012) and Archard's classical wear law (1953). The
+  physics simulator itself is an honest re-derivation of the real,
+  already-validated `brush_patch.py`/`wear.py` modules in the sibling
+  [`tire_physics_nn`](https://github.com/agpoks/tire_physics_nn) project
+  (credited, not imported -- this repo stays self-contained). It is also
+  the only model here whose token is neither a linguistic unit, an image
+  patch, a time step, nor a trajectory step, but a fixed *spatial*
+  position on a physical object -- a fourth kind of "what is a token"
+  answer, alongside PatchTST-style's time patches, Perceiver's raw
+  pixels, and Decision Transformer's trajectory steps.
+
 **ViT (Vision Transformer) is deliberately not duplicated here** -- it
 already lives in
 [`cnn-playground`](https://github.com/agpoks/cnn-playground/tree/main/models/vit)
 as the repo's non-convolutional contrast baseline; this repo links to it
 rather than rebuilding it.
 
-_(remaining sections filled in as the Tire-Patch-Wear Transformer is added.)_
+## The whole lineup, in one sentence each
+
+Attention generalizes across: **masking pattern** (Transformer's
+bidirectional-encoder/causal-decoder split, BERT's pure bidirectionality,
+GPT's pure causality), **positional scheme** (Transformer's fixed
+sinusoidal, BERT/GPT-2's learned, RoFormer's rotary), **efficiency
+mechanism** (Performer's linear-time random-feature attention vs. GPT's
+quadratic exact attention), **tokenization strategy** (PatchTST's time
+patches, Perceiver's raw untouched elements bounded on the query side
+instead, Tire-Patch-Wear's fixed spatial positions), **hybrid
+composition** (Conformer folding real convolution into the attention
+block itself), and **task framing** (Decision Transformer treating an
+entire control trajectory, not a token stream, as the sequence). Nine
+models, nine different axes of the same underlying mechanism -- not nine
+sizes of the same idea.
