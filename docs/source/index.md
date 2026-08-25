@@ -20,6 +20,8 @@ models/transformer
 models/bert
 models/gpt
 models/linattn
+models/patchtst
+models/perceiver
 datasets
 benchmarks
 papers

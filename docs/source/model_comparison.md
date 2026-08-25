@@ -10,6 +10,8 @@ differs is the masking pattern, what plays the role of a token, and what
 | [BERT-style](models/bert) | encoder-only, bidirectional self-attn, masked-LM | remove the mask-free bidirectionality and it degenerates into a causal decoder (GPT-style) with the wrong training objective |
 | [GPT-style](models/gpt) | decoder-only, causal self-attn, pre-norm, learned OR RoPE positional encoding | remove the causal mask and it becomes BERT-style with the wrong objective; RoPE removed just falls back to learned positional embeddings |
 | [Linear attention](models/linattn) | causal attention via FAVOR+ random features + cumulative sums, O(T) not O(T^2) | remove the random-feature kernel approximation and this is just GPT-style again -- the whole point is identical task/architecture, different attention complexity |
+| [PatchTST-style](models/patchtst) | bidirectional attention over 1D time-series patches, channel-independent shared weights | remove patching and it's one token per timestep (much longer, costlier sequences); remove channel-independence and channels could leak into each other's forecast |
+| [Perceiver](models/perceiver) | latents cross-attend into a large raw input array, then self-attend among themselves -- compute linear in input size | remove the latent bottleneck and this is full self-attention over every raw input element, O(input_len^2), infeasible at CIFAR-10-pixel scale |
 
-_(remaining rows filled in as PatchTST-style, Conformer, Perceiver,
-Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_
+_(remaining rows filled in as Conformer, Decision Transformer, and the
+Tire-Patch-Wear Transformer are added.)_

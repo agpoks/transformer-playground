@@ -29,5 +29,19 @@ from-scratch character-level language modeling tutorials. Powers
 **GPT-style** and **Linear attention** (identical task/split for both, for
 a direct comparison). `transformer_playground.data.load_tiny_shakespeare`.
 
-_(remaining datasets filled in as PatchTST-style, Conformer, Perceiver,
-Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_
+## ETTh1
+
+Zhou et al.'s real Electricity Transformer Temperature dataset (hourly
+split), 7 real sensor channels from two Chinese electricity-transformer
+stations -- the same benchmark PatchTST's own paper forecasts on. Powers
+**PatchTST-style**. `transformer_playground.data.load_etth1`.
+
+## CIFAR-10
+
+Krizhevsky's real 32x32 RGB image classification dataset, via
+`torchvision`. Powers **Perceiver** (fed in as 1024 raw pixel tokens, no
+convolution) -- cross-repo comparable in spirit to `cnn-playground`'s
+`cifar_suite` models. `transformer_playground.data.load_cifar10`.
+
+_(remaining datasets filled in as Conformer, Decision Transformer, and the
+Tire-Patch-Wear Transformer are added.)_

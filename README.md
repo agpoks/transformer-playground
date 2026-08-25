@@ -61,9 +61,9 @@ has a matching `example.ipynb`.
 - [x] Transformer (Vaswani et al. 2017)
 - [x] BERT-style encoder
 - [x] GPT-style decoder (+ RoPE)
-- [ ] PatchTST-style time-series transformer
+- [x] PatchTST-style time-series transformer
 - [ ] Conformer
 - [x] Performer/Linformer (linear attention)
-- [ ] Perceiver
+- [x] Perceiver
 - [ ] Decision Transformer
 - [ ] Tire-Patch-Wear Transformer

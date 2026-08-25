@@ -1,0 +1,6 @@
+# Perceiver on real CIFAR-10 (raw flattened pixels, no convolution), solo
+# cluster -- cross-repo comparable in spirit to cnn-playground's cifar_suite
+# models, though this repo's point is attention with no conv at all.
+models:
+  - perceiver
+epochs: 5

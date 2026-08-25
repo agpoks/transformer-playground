@@ -13,6 +13,8 @@ no single paper does exactly that). BibTeX for all references is in
 | [GPT-style](../models/gpt) | Improving Language Understanding by Generative Pre-Training / Language Models are Unsupervised Multitask Learners | 2018 / 2019 | OpenAI preprints, no arXiv id |
 | [GPT-style, RoPE variant](../models/gpt) | RoFormer: Enhanced Transformer with Rotary Position Embedding | 2021 | [arXiv:2104.09864](https://arxiv.org/abs/2104.09864) |
 | [Linear attention](../models/linattn) | Rethinking Attention with Performers | ICLR 2021 | [arXiv:2009.14794](https://arxiv.org/abs/2009.14794) |
+| [PatchTST-style](../models/patchtst) | A Time Series is Worth 64 Words: Long-term Forecasting with Transformers | ICLR 2023 | [arXiv:2211.14730](https://arxiv.org/abs/2211.14730) |
+| [Perceiver](../models/perceiver) | Perceiver: General Perception with Iterative Attention | ICML 2021 | [arXiv:2103.03206](https://arxiv.org/abs/2103.03206) |
 
 ## Why these nine, and not others
 
@@ -42,11 +44,28 @@ size/dataset variant of another model already here:
   of an explicit score matrix), with a real measured latency comparison
   at increasing sequence length as the payoff.
 
+- **PatchTST-style** shows attention generalizing to a completely
+  different modality (time series) via **patching** -- exactly ViT's
+  "split into patches, project each to a token" idea, but 1D and over
+  time instead of 2D and over space. Its **channel independence** design
+  (every variate patch-embedded and encoded by the *same* weights,
+  never mixed) is a real, checkable choice worth calling out on its own:
+  it is not the same idea as patching, just paired with it in this paper.
+- **Perceiver** shows attention generalizing to *any* modality at all, by
+  a different mechanism than patching: a fixed-size learned latent array
+  cross-attends into an arbitrarily large raw input array (here, literally
+  every raw CIFAR-10 pixel, no convolutional patchification), making
+  compute linear in input size instead of quadratic. Complementary to,
+  not a restatement of, PatchTST-style's patching idea -- patching reduces
+  sequence length by tokenizing groups of input elements together;
+  Perceiver keeps every input element as its own token and instead bounds
+  the *query* side of attention.
+
 **ViT (Vision Transformer) is deliberately not duplicated here** -- it
 already lives in
 [`cnn-playground`](https://github.com/agpoks/cnn-playground/tree/main/models/vit)
 as the repo's non-convolutional contrast baseline; this repo links to it
 rather than rebuilding it.
 
-_(remaining sections filled in as PatchTST-style, Conformer, Perceiver,
-Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_
+_(remaining sections filled in as Conformer, Decision Transformer, and the
+Tire-Patch-Wear Transformer are added.)_

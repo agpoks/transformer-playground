@@ -1,0 +1,6 @@
+# PatchTST-style on real ETTh1 (Electricity Transformer Temperature),
+# forecasting 24 hours ahead from a 96-hour lookback window, solo cluster
+# (no other model here shares this task).
+models:
+  - patchtst
+epochs: 10

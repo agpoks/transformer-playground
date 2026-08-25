@@ -26,5 +26,8 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
   Shakespeare, identical task/split for both -- the one genuine two-model
   comparison cluster, isolating the attention mechanism itself.
 
-_(remaining clusters filled in as PatchTST-style, Conformer, Perceiver,
-Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_
+- `timeseries` -- PatchTST-style, solo, real ETTh1.
+- `vision` -- Perceiver, solo, real CIFAR-10.
+
+_(remaining clusters filled in as Conformer, Decision Transformer, and the
+Tire-Patch-Wear Transformer are added.)_

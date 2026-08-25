@@ -12,6 +12,7 @@ import io
 import zipfile
 from pathlib import Path
 
+import numpy as np
 import requests
 
 CACHE_DIR = Path(__file__).resolve().parents[2] / "data_cache"
@@ -86,3 +87,41 @@ def load_tiny_shakespeare() -> str:
         resp.raise_for_status()
         txt_path.write_bytes(resp.content)
     return txt_path.read_text(encoding="utf-8")
+
+
+def load_etth1() -> np.ndarray:
+    """ETTh1 (Electricity Transformer Temperature, hourly), Zhou et al.
+    2021's real public benchmark dataset (the same one PatchTST's own paper
+    forecasts on) -- 7 real sensor channels (6 load features + oil
+    temperature "OT") over ~17,420 hourly readings from two Chinese
+    electricity transformer stations. Returns a (T, 7) float32 array, time-
+    ordered (no shuffling -- a forecasting split must respect time order).
+    """
+    CACHE_DIR.mkdir(exist_ok=True)
+    csv_path = CACHE_DIR / "ETTh1.csv"
+    if not csv_path.exists():
+        url = "https://raw.githubusercontent.com/zhouhaoyi/ETDataset/main/ETT-small/ETTh1.csv"
+        resp = requests.get(url, timeout=60, headers=_HEADERS)
+        resp.raise_for_status()
+        csv_path.write_bytes(resp.content)
+    import csv
+
+    rows = []
+    with open(csv_path, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for row in reader:
+            rows.append([float(v) for v in row[1:]])  # drop the date column
+    return np.array(rows, dtype=np.float32)
+
+
+def load_cifar10(train: bool = True):
+    """Real CIFAR-10 (Krizhevsky) -- (3, 32, 32) RGB, 10 classes. Auto-
+    downloads via torchvision on first call. Powers **Perceiver**, for
+    cross-repo comparability with cnn-playground's cifar_suite models."""
+    import torchvision
+    from torchvision import transforms
+
+    CACHE_DIR.mkdir(exist_ok=True)
+    tfm = transforms.Compose([transforms.ToTensor()])
+    return torchvision.datasets.CIFAR10(root=str(CACHE_DIR), train=train, download=True, transform=tfm)
