@@ -1,0 +1,8 @@
+# GPT-style (causal self-attention, quadratic) vs. linear attention
+# (Performer/FAVOR+), identical causal-LM task and real Tiny Shakespeare
+# data -- the one cluster in this repo where two models are genuinely
+# comparable on identical data, for a direct compute-cost comparison.
+models:
+  - gpt
+  - linattn
+epochs: 3

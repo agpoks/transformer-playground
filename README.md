@@ -60,10 +60,10 @@ has a matching `example.ipynb`.
 
 - [x] Transformer (Vaswani et al. 2017)
 - [x] BERT-style encoder
-- [ ] GPT-style decoder (+ RoPE)
+- [x] GPT-style decoder (+ RoPE)
 - [ ] PatchTST-style time-series transformer
 - [ ] Conformer
-- [ ] Performer/Linformer (linear attention)
+- [x] Performer/Linformer (linear attention)
 - [ ] Perceiver
 - [ ] Decision Transformer
 - [ ] Tire-Patch-Wear Transformer

@@ -70,3 +70,19 @@ def load_wikitext2(split: str = "train") -> str:
         resp.raise_for_status()
         txt_path.write_bytes(resp.content)
     return txt_path.read_text(encoding="utf-8")
+
+
+def load_tiny_shakespeare() -> str:
+    """Tiny Shakespeare (~1.1MB), the well-known character-level corpus from
+    Andrej Karpathy's char-rnn repo, real text (a concatenation of
+    Shakespeare's plays), standard for from-scratch character-level LM
+    tutorials. Returns the full text as one string.
+    """
+    CACHE_DIR.mkdir(exist_ok=True)
+    txt_path = CACHE_DIR / "tinyshakespeare.txt"
+    if not txt_path.exists():
+        url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+        resp = requests.get(url, timeout=60, headers=_HEADERS)
+        resp.raise_for_status()
+        txt_path.write_bytes(resp.content)
+    return txt_path.read_text(encoding="utf-8")

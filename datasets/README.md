@@ -21,6 +21,13 @@ as plain text by the PyTorch examples repo (word-tokenized release, not
 the `-raw` variant). Powers **BERT-style**.
 `transformer_playground.data.load_wikitext2`.
 
-_(remaining datasets filled in as GPT-style, PatchTST-style, Conformer,
-Performer/Linformer, Perceiver, Decision Transformer, and the
-Tire-Patch-Wear Transformer are added.)_
+## Tiny Shakespeare
+
+Andrej Karpathy's well-known ~1.1MB character-level corpus (a
+concatenation of Shakespeare's plays), real text, the standard dataset for
+from-scratch character-level language modeling tutorials. Powers
+**GPT-style** and **Linear attention** (identical task/split for both, for
+a direct comparison). `transformer_playground.data.load_tiny_shakespeare`.
+
+_(remaining datasets filled in as PatchTST-style, Conformer, Perceiver,
+Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_

@@ -18,6 +18,8 @@ model_comparison
 benchmark_results
 models/transformer
 models/bert
+models/gpt
+models/linattn
 datasets
 benchmarks
 papers

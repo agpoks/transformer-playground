@@ -22,7 +22,9 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
 
 - `translation` -- Transformer, solo, real English-French pairs.
 - `mlm` -- BERT-style, solo, real WikiText-2.
+- `language` -- GPT-style and Linear attention (linattn), real Tiny
+  Shakespeare, identical task/split for both -- the one genuine two-model
+  comparison cluster, isolating the attention mechanism itself.
 
-_(remaining clusters filled in as GPT-style, PatchTST-style, Conformer,
-Performer/Linformer, Perceiver, Decision Transformer, and the
-Tire-Patch-Wear Transformer are added.)_
+_(remaining clusters filled in as PatchTST-style, Conformer, Perceiver,
+Decision Transformer, and the Tire-Patch-Wear Transformer are added.)_
