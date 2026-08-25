@@ -30,5 +30,9 @@ RESULT: model=<name> metric_name=<name> metric=<value> params=<n> train_time_s=<
 - `vision` -- Perceiver, solo, real CIFAR-10.
 - `audio` -- Conformer, solo, real Google Speech Commands (core 10 words).
 
-_(remaining clusters filled in as Decision Transformer and the
-Tire-Patch-Wear Transformer are added.)_
+- `control` -- Decision Transformer, solo, real NGSIM traffic field
+  reinterpreted as an offline-imitation control dataset (see
+  `datasets/README.md` and the model's docs page for the honest
+  adaptation).
+
+_(remaining cluster filled in as the Tire-Patch-Wear Transformer is added.)_

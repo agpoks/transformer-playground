@@ -13,6 +13,6 @@ differs is the masking pattern, what plays the role of a token, and what
 | [PatchTST-style](models/patchtst) | bidirectional attention over 1D time-series patches, channel-independent shared weights | remove patching and it's one token per timestep (much longer, costlier sequences); remove channel-independence and channels could leak into each other's forecast |
 | [Perceiver](models/perceiver) | latents cross-attend into a large raw input array, then self-attend among themselves -- compute linear in input size | remove the latent bottleneck and this is full self-attention over every raw input element, O(input_len^2), infeasible at CIFAR-10-pixel scale |
 | [Conformer](models/conformer) | macaron block: half-FFN + bidirectional self-attn + real conv module (pointwise/GLU/depthwise/BN/Swish/pointwise) + half-FFN | remove the conv module and it's a plain (bidirectional) Transformer encoder over spectrogram frames -- no local inductive bias, just global attention |
+| [Decision Transformer](models/decisiontransformer) | causal self-attn over interleaved (return, state, action) tokens; separate embeddings per token type + return-conditioning | remove return-conditioning (feed a fixed/zero return) and it degenerates into plain behavior cloning, unable to be steered toward higher- or lower-return behavior at inference |
 
-_(remaining rows filled in as Decision Transformer and the
-Tire-Patch-Wear Transformer are added.)_
+_(remaining row filled in as the Tire-Patch-Wear Transformer is added.)_

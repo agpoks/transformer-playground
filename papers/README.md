@@ -16,6 +16,7 @@ no single paper does exactly that). BibTeX for all references is in
 | [PatchTST-style](../models/patchtst) | A Time Series is Worth 64 Words: Long-term Forecasting with Transformers | ICLR 2023 | [arXiv:2211.14730](https://arxiv.org/abs/2211.14730) |
 | [Perceiver](../models/perceiver) | Perceiver: General Perception with Iterative Attention | ICML 2021 | [arXiv:2103.03206](https://arxiv.org/abs/2103.03206) |
 | [Conformer](../models/conformer) | Conformer: Convolution-augmented Transformer for Speech Recognition | 2020 | [arXiv:2005.08100](https://arxiv.org/abs/2005.08100) |
+| [Decision Transformer](../models/decisiontransformer) | Decision Transformer: Reinforcement Learning via Sequence Modeling | NeurIPS 2021 | [arXiv:2106.01345](https://arxiv.org/abs/2106.01345) |
 
 ## Why these nine, and not others
 
@@ -71,11 +72,26 @@ size/dataset variant of another model already here:
   genuinely different combination than any other model in this repo, none
   of which mix a real learned convolution into the attention block itself.
 
+- **Decision Transformer** applies attention to *control*, not perception:
+  the entire sequence is a trajectory (return-to-go, state, action)
+  rather than a token stream, and the mechanism that steers behavior is
+  return-conditioning, not a target label. The closely related
+  Trajectory Transformer (Janner et al. 2021,
+  [arXiv:2106.02039](https://arxiv.org/abs/2106.02039) -- discretizes
+  every scalar dimension and repurposes beam search as a planner) was
+  deliberately **not** built here: Decision
+  Transformer is simpler and more canonical, needing no discretization or
+  search machinery, while still demonstrating the same "control as
+  sequence modeling" idea. This repo has no per-agent RL-labeled dataset,
+  so it reinterprets the real NGSIM traffic field (already used in
+  `sciml-playground`) as an offline-imitation control dataset -- see
+  {doc}`the model's docs page <../models/decisiontransformer>` for the
+  full, explicit adaptation.
+
 **ViT (Vision Transformer) is deliberately not duplicated here** -- it
 already lives in
 [`cnn-playground`](https://github.com/agpoks/cnn-playground/tree/main/models/vit)
 as the repo's non-convolutional contrast baseline; this repo links to it
 rather than rebuilding it.
 
-_(remaining sections filled in as Decision Transformer and the
-Tire-Patch-Wear Transformer are added.)_
+_(remaining sections filled in as the Tire-Patch-Wear Transformer is added.)_

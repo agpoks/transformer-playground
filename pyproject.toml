@@ -12,6 +12,7 @@ dependencies = [
     "torchvision>=0.17",
     "torchaudio>=2.2",
     "numpy>=1.24",
+    "pandas>=2.0",
     "matplotlib>=3.7",
     "pillow>=10.0",
     "requests>=2.31",

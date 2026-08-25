@@ -13,10 +13,14 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import requests
 
 CACHE_DIR = Path(__file__).resolve().parents[2] / "data_cache"
 _HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; transformer-playground/0.1)"}
+
+NGSIM_RESOURCE_URL = "https://data.transportation.gov/resource/8ect-6jqj.csv"
+_FEET_TO_M = 0.3048
 
 
 def load_translation_pairs(max_pairs: int = 20000) -> list[tuple[str, str]]:
@@ -180,6 +184,60 @@ def load_speech_commands(
     train_wavs = np.stack([_load_wav(p) for p in train_paths])
     test_wavs = np.stack([_load_wav(p) for p in test_paths])
     return (train_wavs, np.array(train_labels, dtype=np.int64)), (test_wavs, np.array(test_labels, dtype=np.int64)), words
+
+
+def load_ngsim_traffic_field(
+    location: str = "us-101", space_bins: int = 64, time_bins: int = 200, v_class: int = 2
+) -> "torch.Tensor":
+    """Real macroscopic NGSIM US-101 traffic field (US DOT, public domain,
+    via the Socrata SODA API -- no login), the same real data source and
+    histogram-binning methodology already used by `sciml-playground`'s
+    PDE-Net/PINO/FNO/GNO models -- downloaded independently here (not a
+    cross-repo import), so this repo has no dependency on sciml-playground
+    being installed alongside it. Powers **Decision Transformer** (see that
+    model's honest data-adaptation note in `models/decisiontransformer/model.py`
+    for exactly how this aggregate field is turned into control
+    trajectories -- it is NOT itself an RL/control dataset).
+
+    Returns (2, time_bins, space_bins): channel 0 = density-like (raw
+    observation count / bin width, vehicles/meter), channel 1 = speed-like
+    (mean vehicle speed, m/s) -- both zero in any (t, s) bin with no
+    vehicle observation, which is "no data", not "vehicle stopped."
+    """
+    import torch
+
+    CACHE_DIR.mkdir(exist_ok=True)
+    raw_path = CACHE_DIR / f"ngsim_{location}_traffic_field.csv"
+    if not raw_path.exists():
+        where = f"location='{location}' AND v_class={v_class}"
+        resp = requests.get(
+            NGSIM_RESOURCE_URL,
+            params={"$where": where, "$limit": 500_000, "$order": "vehicle_id,frame_id"},
+            timeout=180,
+            headers=_HEADERS,
+        )
+        resp.raise_for_status()
+        raw_path.write_bytes(resp.content)
+
+    df = pd.read_csv(raw_path)
+    df.columns = [c.lower() for c in df.columns]
+    df["x_m"] = df["local_y"] * _FEET_TO_M
+    t0 = df["global_time"].min()
+    df["t_s"] = (df["global_time"] - t0) / 1000.0
+
+    x_edges = np.linspace(df["x_m"].min(), df["x_m"].max(), space_bins + 1)
+    t_edges = np.linspace(df["t_s"].min(), df["t_s"].max(), time_bins + 1)
+
+    count_field, _, _ = np.histogram2d(df["t_s"], df["x_m"], bins=[t_edges, x_edges])
+    speed_sum, _, _ = np.histogram2d(
+        df["t_s"], df["x_m"], bins=[t_edges, x_edges], weights=df["v_vel"] * _FEET_TO_M
+    )
+    with np.errstate(invalid="ignore", divide="ignore"):
+        speed_field = np.where(count_field > 0, speed_sum / np.maximum(count_field, 1), 0.0)
+    density_field = count_field / (x_edges[1] - x_edges[0])
+
+    field = np.stack([density_field, speed_field], axis=0)
+    return torch.tensor(field, dtype=torch.float32)
 
 
 def load_cifar10(train: bool = True):

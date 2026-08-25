@@ -23,6 +23,7 @@ models/linattn
 models/patchtst
 models/perceiver
 models/conformer
+models/decisiontransformer
 datasets
 benchmarks
 papers

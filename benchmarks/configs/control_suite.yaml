@@ -1,0 +1,6 @@
+# Decision Transformer on real NGSIM traffic data, reinterpreted as an
+# offline-imitation control dataset (see model.py's honest data-adaptation
+# note -- this is NOT literally reward-labeled RL data).
+models:
+  - decisiontransformer
+epochs: 10

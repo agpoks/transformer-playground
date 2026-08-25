@@ -65,5 +65,5 @@ has a matching `example.ipynb`.
 - [x] Conformer
 - [x] Performer/Linformer (linear attention)
 - [x] Perceiver
-- [ ] Decision Transformer
+- [x] Decision Transformer
 - [ ] Tire-Patch-Wear Transformer

@@ -55,5 +55,17 @@ cap is applied per class (documented in the loader); the real, official
 `testing_list.txt` split is used for test regardless. Powers **Conformer**.
 `transformer_playground.data.load_speech_commands`.
 
-_(remaining datasets filled in as Decision Transformer and the
-Tire-Patch-Wear Transformer are added.)_
+## NGSIM traffic field (US-101), reinterpreted as offline-imitation control data
+
+The real NGSIM US-101 macroscopic traffic field (US DOT, public domain,
+Socrata SODA API -- no login), downloaded independently here with the same
+real data source and histogram-binning methodology already validated in
+[`sciml-playground`](https://github.com/agpoks/sciml-playground) (not a
+cross-repo import or dependency). This aggregate density/speed field is
+**not** itself an RL-labeled control dataset -- **Decision Transformer**
+reinterprets each spatial bin's time series as one imitation trajectory
+(state = density/speed, action = observed speed change, reward = closeness
+to a free-flow-speed target); see that model's docs page for the full,
+explicit adaptation. `transformer_playground.data.load_ngsim_traffic_field`.
+
+_(remaining dataset filled in as the Tire-Patch-Wear Transformer is added.)_
