@@ -14,6 +14,9 @@ Every model ships with a runnable Python example and a Jupyter notebook.
 :caption: Contents
 
 getting_started
+attention_explained
+encoder_decoder
+adding_a_model
 model_comparison
 benchmark_results
 models/transformer

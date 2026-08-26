@@ -14,29 +14,20 @@ and [`cnn-playground`'s](https://github.com/agpoks/cnn-playground/blob/main/docs
 for the same from-scratch philosophy applied to recurrent cells and
 convolutions respectively.
 
-## Scaled dot-product attention, from scratch
+## Attention and architecture, in detail
 
-$$
-\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
-$$
+Two dedicated pages cover this properly, separately from any one model:
 
-where $M$ is an additive mask (all zeros for full/bidirectional attention;
-$-\infty$ above the diagonal for causal/decoder attention). In code, this
-is nothing more than:
+- {doc}`attention_explained` -- what attention computes, why the
+  $\sqrt{d_k}$ scaling exists, multi-head attention, and the three
+  masking patterns (none / causal / cross) that every model here is
+  built from, each with a diagram and verbatim code.
+- {doc}`encoder_decoder` -- how those masking patterns combine into
+  encoder-only, decoder-only, and encoder-decoder models, with a
+  side-by-side diagram and the real `EncoderLayer`/`DecoderLayer` code.
 
-```python
-def attention(q, k, v, mask=None):
-    d_k = q.shape[-1]
-    scores = q @ k.transpose(-2, -1) / d_k ** 0.5
-    if mask is not None:
-        scores = scores.masked_fill(mask, float("-inf"))
-    return torch.softmax(scores, dim=-1) @ v
-```
-
-Multi-head attention just runs this in parallel on `h` learned linear
-projections of `Q`, `K`, `V`, then concatenates and projects the result back
-down -- see any model's `model.py` for the exact `nn.Linear`-only
-implementation, and its docs page for the architecture diagram.
+Building your own model on top of these conventions? See
+{doc}`adding_a_model`.
 
 ## Install and run
 
