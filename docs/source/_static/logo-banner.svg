@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 140" width="940" height="140" role="img" aria-label="transformer-playground">
+  <defs>
+    <linearGradient id="bgb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <radialGradient id="sheenb" cx="35%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="text" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(6,6) scale(0.64)">
+    <polygon points="100,14 168,54 168,146 100,186 32,146 32,54" fill="url(#bgb)"/>
+    <polygon points="100,14 168,54 168,146 100,186 32,146 32,54" fill="url(#sheenb)"/>
+    <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+      <line x1="100" y1="132" x2="52"  y2="76"  stroke-opacity="0.85"/>
+      <line x1="100" y1="132" x2="76"  y2="66"  stroke-opacity="0.35"/>
+      <line x1="100" y1="132" x2="100" y2="62"  stroke-opacity="0.55"/>
+      <line x1="100" y1="132" x2="124" y2="66"  stroke-opacity="0.30"/>
+      <line x1="100" y1="132" x2="148" y2="76"  stroke-opacity="0.65"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="52"  cy="76" r="8"  opacity="0.9"/>
+      <circle cx="76"  cy="66" r="7"  opacity="0.55"/>
+      <circle cx="100" cy="62" r="7.5" opacity="0.75"/>
+      <circle cx="124" cy="66" r="7"  opacity="0.5"/>
+      <circle cx="148" cy="76" r="8"  opacity="0.85"/>
+    </g>
+    <circle cx="100" cy="132" r="11.5" fill="#ffffff"/>
+  </g>
+
+  <text x="150" y="66" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="url(#text)">transformer-playground</text>
+  <text x="150" y="92" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#64748b">Transformer &#183; BERT &#183; GPT &#183; PatchTST &#183; Conformer &#183; Performer &#183; Perceiver &#183; Decision Transformer &#183; Tire-Wear</text>
+
+</svg>

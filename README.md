@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/source/_static/logo-banner.svg" alt="transformer-playground" width="520">
+</p>
+
 # transformer-playground
 
 A playground for **Transformer architectures and attention**: implement,
