@@ -16,6 +16,16 @@ project -- credited explicitly here, **not** imported as a code dependency
 (every repo in this family stays self-contained and independently
 cloneable).
 
+![What wear actually looks like on a real tire](../_static/plots/tirewear-real-photo.png)
+
+*Real photographs (NMiriams/Good_Tires, NMiriams/Defective_Tires,
+Hugging Face Hub, CC BY 4.0), shown for grounding only -- this model's
+training and evaluation data is a simulated 1D pressure/wear **field**
+along the contact patch (see "Results" below), not a photograph. No
+photographic dataset carries the spatially-resolved patch-position wear
+signal this model predicts, which is exactly why the honesty note below
+flags real validation as out of reach for now.*
+
 ## The equation
 
 The contact patch runs from the leading edge ($\xi=0$) to the trailing
