@@ -39,10 +39,12 @@ papers/pdfs/
 !transformer_playground/**/*.npy
 
 # --- Benchmark outputs ---
-benchmarks/results/*.csv
-benchmarks/results/*.json
-benchmarks/results/*.png
-!benchmarks/results/.gitkeep
+# Measured results and figures ARE tracked: the docs tables and plots are
+# generated from them, so a checkout without them cannot reproduce the pages.
+# Only raw sweep dumps stay out: those are timestamped, one per run, and
+# accumulate. Curated results and every figure are tracked.
+benchmarks/results/raw/
+benchmarks/results/*_[0-9][0-9][0-9][0-9][0-9][0-9]*.csv
 
 # --- Docs build ---
 docs/build/
